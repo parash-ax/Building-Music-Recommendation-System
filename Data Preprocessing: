@@ -1,0 +1,17 @@
+# read the data
+df = pd.read_csv("data/song-dataset.csv", low_memory=False)[:1000]
+
+# remove duplicates
+df = df.drop_duplicates(subset="Song Name")
+
+# drop Null values
+df = df.dropna(axis=0)
+
+# Drop the non-required columns
+df = df.drop(df.columns[3:], axis=1)
+
+# Removing space from "Artist Name" column
+df["Artist Name"] = df["Artist Name"].str.replace(" ", "")
+
+# Combine all columns and assign as new column
+df["data"] = df.apply(lambda value: " ".join(value.astype("str")), axis=1)
