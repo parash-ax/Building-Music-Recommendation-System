@@ -1,0 +1,4 @@
+# models
+vectorizer = CountVectorizer()
+vectorized = vectorizer.fit_transform(df["data"])
+similarities = cosine_similarity(vectorized)
