@@ -1,0 +1,34 @@
+true = True
+while true:
+    print("The Top 10 Song Recommendation System")
+    print("-------------------------------------")
+    print("This will generate the 10 songs from the database thoese are similar to the song you entered.")
+
+    while True:
+        input_song = input("Please enter the name of song: ")
+
+        if input_song in df_tmp.columns:
+            recommendation = df_tmp.nlargest(11, input_song)["Song Name"]
+            break
+        
+        else:
+            print("Sorry, there is no song name in our database. Please try another one.")
+    
+    print("You should check out these songs: \n")
+    for song in recommendation.values[1:]:
+        print(song)
+
+    print("\n")
+    
+    while True:
+        next_command = input("Do you want to generate again for the next song? [yes, no] ")
+
+        if next_command == "yes":
+            break
+
+        elif next_command == "no":
+            true = False
+            break
+
+        else:
+            print("Please type 'yes' or 'no'")
